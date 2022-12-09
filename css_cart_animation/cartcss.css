@@ -1,0 +1,108 @@
+:root {
+    --neutral-900: hsl(207, 19%, 9%);
+    --neutral-100: hsl(0,0%, 100%);
+    --accent-400: hsl(142 90% 61%);
+}
+*, ::before, ::after {
+    box-sizing: border-box;
+    padding: 0;
+}
+body {
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+    line-height: 1.6;
+    background: var(--neutral-900);
+   
+}
+.cart {
+    color: var(--neutral-100);
+    background-image: url(/images/about-img.jpeg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 10rem 0 0;
+    max-width: 35ch;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    transition: transform 500ms ease;
+}
+.cart:hover,
+.cart:focus-within {
+    transform: scale(1.05);
+}
+.cart-content {
+    --padding: 1.5rem;
+    line-height: 1.6;
+    padding: var(--padding);
+    background: linear-gradient(
+        hsl(0 0% 0% / 0),
+        hsl(20 0% 0% / 0.2) 10%,
+        hsl(0 0% 0% / 1)
+    );
+    
+}
+
+.cart-title {
+    position: relative;
+    width: max-content;
+}
+.cart-title::after {
+    content: "";
+    position: absolute;
+    height: 4px;
+    width: calc(100% + var(--padding));
+    background: var(--accent-400);
+    bottom: 0;
+    left: calc(var(--padding) * -1);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 500ms ease;
+}
+.cart:hover .cart-title::after,
+.cart:focus-within .cart-title::after {
+    transform: scale(1);
+}
+.button {
+    display: inline-block;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--neutral-900);
+    background-color: var(--accent-400);
+    padding: 0.5em 1.25em;
+    border-radius: 0.25em;
+}
+.button:hover, 
+.button:focus {
+    background-color: var(--neutral-100);
+}
+@media (hover) {
+
+    .cart-content {
+        transform: translateY(65%);
+        transition: transform 500ms ease;
+    }
+
+    .cart:hover .cart-content,
+    .cart:focus-within .cart-content {
+        transform: translateY(0);
+        transition-delay: 500ms;
+    }
+    .cart:focus-within .cart-content {
+        transition-duration: 0ms;
+    }
+    .cart:hover .cart-content > *:not(.cart-title),
+    .cart:focus-within .cart-content > *:not(.cart-title){
+        opacity: 1;
+        transition-delay: 900ms;
+    }
+    .cart-content > *:not(.cart-title) {
+        opacity: 0;
+        transition: opacity 500ms ease;
+        
+    }
+    .cart-title::after {
+        transform: scaleX(0);
+    }
+
+}
